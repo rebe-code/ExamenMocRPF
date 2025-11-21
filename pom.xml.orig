@@ -10,7 +10,11 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>ExamenMocRPF</artifactId>
-	<version>1.1.0</version>
+<<<<<<< .merge_file_LYqUp8
+	<version>1.0.0</version>
+=======
+	<version>1.1.0-SNAPSHOT</version>
+>>>>>>> .merge_file_OcaOeT
 	<name>ExamenMocRPF</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
