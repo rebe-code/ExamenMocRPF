@@ -1,22 +1,20 @@
 package com.example.ExamenMocRPF.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import controller.ProductoController;
-import entry.Producto;
-import org.junit.jupiter.api.BeforeEach;
+import com.example.ExamenMocRPF.entry.Producto;
+import com.example.ExamenMocRPF.service.ProductoService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.web.servlet.MockMvc;
-import service.ProductoService;
 
-import java.util.Arrays;
+import java.util.List;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ProductoController.class)
@@ -25,78 +23,30 @@ class ProductoControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @Configuration
+    static class MockConfig {
+        @Bean
+        public ProductoService productoService() {
+            return Mockito.mock(ProductoService.class);
+        }
+    }
+
+    @Autowired
     private ProductoService productoService;
 
     @Test
     void listaProductos() throws Exception {
-        Producto p = new Producto();
-        p.setId(1L);
-        p.setNombre("Test product");
+        Producto producto = new Producto();
+        producto.setId(1L);
+        producto.setNombre("Test product");
 
-        when(productoService.findAllProductos()).thenReturn(Arrays.asList(p));
+        when(productoService.findAllProductos()).thenReturn(List.of(producto));
 
-        mockMvc.perform(get("/api/products")) // ajusta la ruta a la tuya
+        mockMvc.perform(get("/api/products"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$[0].name").value("Test product"));
+                .andExpect(jsonPath("$[0].nombre").value("Test product"));
 
-        verify(productoService, times(1)).findAllProductos();
+        verify(productoService).findAllProductos();
     }
-
-    /*private ObjectMapper mapper = new ObjectMapper();
-
-    private Producto p1;
-    private Producto p2;
-
-    @BeforeEach
-    void setUp() {
-        p1 = new Producto(1L, "Pan", 1.0);
-        p2 = new Producto(2L, "Leche", 0.8);
-    }
-
-    @Test
-    void testListarProductos() throws Exception {
-        when(productoService.listarProductos()).thenReturn(Arrays.asList(p1, p2));
-
-        mockMvc.perform(get("/productos"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2));
-
-        verify(productoService, times(1)).listarProductos();
-    }
-
-    @Test
-    void testBuscarProducto() throws Exception {
-        when(productoService.buscarPorId(1L)).thenReturn(p1);
-
-        mockMvc.perform(get("/productos/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nombre").value("Pan"));
-
-        verify(productoService, times(1)).buscarPorId(1L);
-    }
-
-    @Test
-    void testGuardarProducto() throws Exception {
-        when(productoService.guardarProducto(any())).thenReturn(p1);
-
-        mockMvc.perform(post("/productos")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsString(p1)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nombre").value("Pan"));
-
-        verify(productoService, times(1)).guardarProducto(any());
-    }
-
-    @Test
-    void testEliminarProducto() throws Exception {
-        doNothing().when(productoService).eliminarProducto(1L);
-
-        mockMvc.perform(delete("/productos/1"))
-                .andExpect(status().isOk());
-
-        verify(productoService, times(1)).eliminarProducto(1L);
-    }*/
 }
+

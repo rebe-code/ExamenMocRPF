@@ -1,4 +1,4 @@
-package entry;
+package com.example.ExamenMocRPF.entry;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

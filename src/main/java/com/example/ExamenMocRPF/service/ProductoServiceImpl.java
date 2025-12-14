@@ -1,7 +1,7 @@
-package service;
-import entry.Producto;
+package com.example.ExamenMocRPF.service;
+import com.example.ExamenMocRPF.entry.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
-import repository.ProductoRepository;
+import com.example.ExamenMocRPF.repository.ProductoRepository;
 
 import java.util.List;
 import java.util.Optional;

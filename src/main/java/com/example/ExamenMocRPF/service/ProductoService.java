@@ -1,6 +1,6 @@
-package service;
+package com.example.ExamenMocRPF.service;
 
-import entry.Producto;
+import com.example.ExamenMocRPF.entry.Producto;
 
 import java.util.List;
 import java.util.Optional;

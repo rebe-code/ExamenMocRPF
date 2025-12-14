@@ -1,5 +1,5 @@
 package com.example.ExamenMocRPF.Service;
-import entry.Producto;
+import com.example.ExamenMocRPF.entry.Producto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,11 +7,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import repository.ProductoRepository;
-import service.ProductoServiceImpl;
+import com.example.ExamenMocRPF.repository.ProductoRepository;
+import com.example.ExamenMocRPF.service.ProductoServiceImpl;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;

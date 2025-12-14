@@ -1,6 +1,6 @@
-package repository;
+package com.example.ExamenMocRPF.repository;
 
-import entry.Producto;
+import com.example.ExamenMocRPF.entry.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
