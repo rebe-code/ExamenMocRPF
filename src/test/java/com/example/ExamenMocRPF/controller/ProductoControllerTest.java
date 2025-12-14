@@ -42,7 +42,7 @@ class ProductoControllerTest {
 
         when(productoService.findAllProductos()).thenReturn(List.of(producto));
 
-        mockMvc.perform(get("/api/products"))
+        mockMvc.perform(get("/api/productos"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].nombre").value("Test product"));
 
