@@ -38,10 +38,6 @@ public class Producto {
         @Column
         private Integer cantidad;
 
-    public Producto(){
-
-    }
-
     public Long getId() {
         return id;
     }
