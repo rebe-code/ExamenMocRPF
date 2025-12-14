@@ -2,10 +2,11 @@ package com.example.ExamenMocRPF.service;
 import com.example.ExamenMocRPF.entry.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.ExamenMocRPF.repository.ProductoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class ProductoServiceImpl implements ProductoService{
 
     @Autowired
